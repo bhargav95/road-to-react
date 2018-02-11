@@ -30,6 +30,26 @@ function isSearched(searchTerm) {
   }
 }
 
+class Button extends Component{
+  render(){
+    const{
+      onClick,
+      className,
+      children,
+    }=this.props;
+
+    return(
+      <button
+        onClick={onClick}
+        className={className}
+        type="button"
+    >
+            {children}
+      </button>
+    )
+  }
+}
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -76,12 +96,9 @@ class App extends Component {
               <span>{item.num_comments}</span>
               <span>{item.points}</span>
                 <span>
-                    <button
-                        onClick={() => this.onDismiss(item.objectID)}
-                        type="button"
-                    >
+                    <Button onClick={() => this.onDismiss(item.objectID)}>
                             Dismiss
-                    </button>
+                    </Button>
                 </span>
             </div>
           )
