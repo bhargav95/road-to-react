@@ -30,25 +30,24 @@ function isSearched(searchTerm) {
   }
 }
 
-class Button extends Component{
-  render(){
-    const{
-      onClick,
-      className='',
-      children,
-    }=this.props;
-
-    return(
+const Button = ({onClick,className='',children}) =>
       <button
         onClick={onClick}
         className={className}
         type="button"
-    >
+      >
             {children}
       </button>
-    )
-  }
-}
+
+const Search = ({value='',onChange,children}) =>
+  <form>
+    <input
+      type="text"
+      value={value}
+      onChange={onChange}
+      placeholder={children}
+    />
+  </form>
 
 class App extends Component {
   constructor(props){
@@ -79,12 +78,12 @@ class App extends Component {
     const {searchTerm, list}=this.state;
     return (
       <div className="App">
-        <form>
-          <input
-            type="text"
+        <Search
             value={searchTerm}
-            onChange={this.onSearchChange}/>
-        </form>
+            onChange={this.onSearchChange}
+        >
+          Search
+        </Search>
 
         {
           list.filter(isSearched(this.state.searchTerm)).map(item =>
